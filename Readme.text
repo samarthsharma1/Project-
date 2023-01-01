@@ -1,0 +1,71 @@
+
+====> steps to be follow to create google translate api 
+        -> 1.creaete account in google cloud platform (https://cloud.google.com/products/storage/?utm_source=google&utm_medium=cpc&utm_campaign=japac-IN-all-en-dr-bkws-all-pkws-trial-e-dr-1009882&utm_content=text-ad-none-none-DEV_c-CRE_634197777489-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Storage_Cloud%20Storage_google%20cloud%20storage_main-KWID_43700074201095036-aud-1185880979976%3Akwd-166601611930&userloc_20453-network_g&utm_term=KW_google%20clouds%20storage&gclid=Cj0KCQiAtbqdBhDvARIsAGYnXBMSpa8VrNMYukOL8Pjz9ftqX4pSQ7dwARGRDcJg5MSOm0hYQOgWYgEaAqtzEALw_wcB&gclsrc=aw.ds)
+
+        -> 2.create a project by click the button at right side of search bar 
+
+                --> you will see the New project button
+
+                --> go through the simple steps of it 
+
+        -> 3. then go to navigation bar right beside the Google Cloud className 
+
+                --> go to APIs and services 
+
+                        ->enabled APIs and services (right side)
+                
+                        -> enable api and service ( on top with '+' sign) will redirect to another page
+                
+                        -> search for required api (cloud translate api) in search bar
+                
+                        ->select the prefed one and enable it.
+
+        -> 4.now go to credential tab (in APIs and services tab)
+
+                --> click on selected / created API Key ( will redirect to another page)
+
+                -->restrict the api calls with ip address (enter the ip address of your server make request google to translate)
+
+        now we successfully created  the api in google cloud platform with our credentials.
+
+
+===> procedure how google recognize you while requesting to google cloud platform 
+        there are three ways defined to authenticate go through the following link (https://cloud.google.com/docs/authentication/client-libraries#node.js)
+            
+            -> here we using Authenticate to Cloud services using client librarie 
+
+                    --> through this way google will automatically recognize you while requesting to api (ip address mentioned in key restrictions list)
+
+                    --> to do that we have to install and login to gcloud CLI (google cloud client library infrastructor) with our credentials in our system
+
+                    --> just go through this link (https://cloud.google.com/sdk/docs/install#windows) and install then 
+
+                    --> it will redirect to a web page to login and give permissions to it.
+
+        now all set to our created google translate to use in production.
+
+        with this method we dont need to expose or secure our api key in server to pass into every request of google translate lanEngine 
+
+        its a way of secure the api to avoid the  stolling of our api.
+
+
+
+===> whenever translate request hit our server that needs to follow these steps
+    
+    -->check the database whether the "text" (to be translate from) field is exist or not
+       
+        ---> if exists, return the value stored in db
+
+        ---> else translate the text and store the resultant in database
+                    to avoid repeated text translations
+
+
+===> steps to follow for smart caching of translation
+   
+    --> check the source text associated with source text and target text in database row.
+   
+    --> check source language code associated with source language code and target language code in database row.
+   
+    --> check the traget language code associated with source language code and target langugae code.
+
+then we will the exactly matched the translated text we done before and stored in our db.
